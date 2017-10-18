@@ -21,16 +21,30 @@ class SegmentList extends DrawObject {
     }
 
     timeTravel (T, polygon=false, filter=false) {
+        if (T === 0) {
+            return;
+        }
         assert(T <= this.maxTime(), 'You\'re going to (max)time prison');
         assert(T >= this.minTime(), 'You\'re going to (min)time prison');
-        this.segments.forEach(function(segment) {
-            segment.timeTravel(T, polygon);
-        });
+        let polygons = [];
+        for (var i in this.segments) {
+            let poly = this.segments[i].timeTravel(T, polygon);
+            if (polygon) {
+                polygons.push(poly);
+            }
+        }
         if (filter) {
             this.segments = this.segments.filter(function(segment) {
                 return segment.length > 0;
             });
             this.updateVelocities();
+        }
+        if (polygon) {
+            let group = new THREE.Group();
+            polygons.forEach(function(poly) {
+                group.add(poly);
+            });
+            return group;
         }
     }
 
@@ -71,7 +85,7 @@ class SegmentList extends DrawObject {
     }
 
     clone () {
-        return new SegmentList(this.segments.map(segment => segment.clone()));
+        return new SegmentList(this.scene, this.segments.map(segment => segment.clone()));
     }
 
     // TODO: Implement case where index = -1 <18-10-17, shankha> //

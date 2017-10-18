@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Segment } from './js/cross_sections/segment.js';
 import { SegmentList } from './js/cross_sections/segment_list.js';
+import { TimeSeries } from './js/time_series/time_series.js';
 import { CrossSection2D } from './js/cross_sections/cross_section_2D.js';
 import TrackballControls from './js/controls/TrackballControls.js';
 import {controllerParameterUpdate, initializeCanvas} from './js/initialize_canvas.js';
@@ -23,26 +24,33 @@ var s1 = new Segment(scene, left, right, direction);
 //var s2 = new Segment(scene, left, right, direction);
 
 var segments = new SegmentList(scene, [s1]);
-segments.draw();
-segments.timeTravel(40, true);
+
+let TS = new TimeSeries(scene, segments, 70);
+
+segments.timeTravel(70);
 var orientation = new THREE.Vector3(0,1,0);
 var direction = new THREE.Vector3(-1,0,0);
 segments.makeSegment(0, orientation, direction);
-segments.timeTravel(20, true);
 
-var T = 80
+TS.addSnapshot(segments, 40);
+segments.timeTravel(40, true);
 
 var orientation = new THREE.Vector3(-1,0,0);
 var direction = new THREE.Vector3(0,1,0);
 segments.makeSegment(0, orientation, direction);
-segments.timeTravel(20, true, true);
 
-segments.timeTravel(20, true);
+TS.addSnapshot(segments, 40);
+segments.timeTravel(40, true, true);
 
-segments.setDirection(new THREE.Vector3(0,0,1));
-segments.timeTravel(20, true);
+TS.addSnapshot(segments, 50);
+//segments.timeTravel(20, true);
 
-segments.refresh();
+//segments.setDirection(new THREE.Vector3(0,0,1));
+//segments.timeTravel(20, true);
+
+//segments.refresh();
+
+var T = 40
 
 // Options to be added to the GUI
 let options = {
@@ -82,13 +90,10 @@ let controller = gui.addFolder('Trackball Controls');
     });
 
 gui.add(options, 'reset');
-let timeController = gui.add(options, 'time', 0, 100).step(1);
+let timeController = gui.add(options, 'time', 0, 200).step(1);
 
 timeController.onChange(function(time) {
-    segments.timeTravel(Math.round((time-T)*10)/10, true);
-    T = time;
-    segments.draw();
-    render();
+    TS.timeTravel(time);
 });
 
 

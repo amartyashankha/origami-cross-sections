@@ -76,7 +76,8 @@ class Segment extends DrawObject {
             poly.faces.push(new THREE.Face3(0,1,2));
             poly.faces.push(new THREE.Face3(2,3,1));
             var mesh = new THREE.Mesh(poly, planeMaterial);
-            this.scene.add(mesh);
+            //this.scene.add(mesh);
+            return mesh;
         }
     }
 
@@ -94,7 +95,7 @@ class Segment extends DrawObject {
             this.orient = this.orientation.normalize();
         this.delta = this.orient.clone().multiplyScalar(this.scale);
         this.orient.normalize();
-        this.numArrows = Math.floor(this.delta.length()) * 2;
+        this.numArrows = Math.floor(0.9*this.delta.length()) * 2;
         if (this.numArrows > 0)
             this.delta.multiplyScalar(1/this.numArrows);
         else
@@ -154,7 +155,12 @@ class Segment extends DrawObject {
     }
 
     clone () {
-        let newSegment = new Segment(scene, this.left.clone(), this.right.clone(), this.orient.clone());
+        let newSegment = new Segment(this.scene,
+                                     this.left.clone(),
+                                     this.right.clone(),
+                                     this.direction.clone(),
+                                     this.orientation.clone());
+        newSegment.scale = this.scale;
         newSegment.status = this.status;
         newSegment.leftVelocity = this.leftVelocity;
         newSegment.rightVelocity = this.rightVelocity;
