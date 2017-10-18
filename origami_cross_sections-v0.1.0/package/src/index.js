@@ -4,7 +4,6 @@ import { SegmentList } from './js/cross_sections/segment_list.js';
 import { TimeSeries } from './js/time_series/time_series.js';
 import { CrossSection2D } from './js/cross_sections/cross_section_2D.js';
 import TrackballControls from './js/controls/TrackballControls.js';
-import * as dat from 'dat.gui/build/dat.gui.js';
 import {controllerParameterUpdate, initializeCanvas} from './js/initialize_canvas.js';
 import './styles/core.scss'
 
@@ -52,7 +51,6 @@ TS.addSnapshot(segments, 50);
 //segments.refresh();
 
 var T = 40
-TS.timeTravel(T);
 
 // Options to be added to the GUI
 let options = {
@@ -78,7 +76,7 @@ let options = {
 initializeCanvas(scene, camera, renderer, controls, options);
 
 // DAT.GUI Related Stuff
-let gui = new dat.GUI({ width: 500, resizable: true });
+let gui = new dat.GUI({ width: 900 });
 
 let controller = gui.addFolder('Trackball Controls');
 [

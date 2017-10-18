@@ -54,10 +54,8 @@
   "dependencies": {
     "assert": "^1.4.1",
     "chai": "^4.1.2",
-    "dat.gui": "^0.6.1",
     "normalize.css": "^7.0.0",
     "three": "^0.87.1",
-    "three-trackballcontrols": "^0.0.6",
     "three.js": "^0.77.1",
     "vjslider": "^1.0.6"
   },
