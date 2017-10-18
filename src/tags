@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+NONE	js/controls/TrackballControls.js	/^	var STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };$/;"	p	class:THREE.TrackballControls.STATE
+THREE.TrackballControls	js/controls/TrackballControls.js	/^THREE.TrackballControls = function ( object, domElement ) {$/;"	c
+arrowColor	js/cross_sections/segment.js	/^var arrowColor = 0x005f00;$/;"	v
+checkDistances	js/controls/TrackballControls.js	/^	this.checkDistances = function () {$/;"	m	class:THREE.TrackballControls
+constructor	js/controls/TrackballControls.js	/^THREE.TrackballControls.prototype.constructor = THREE.TrackballControls;$/;"	m	class:THREE.TrackballControls
+contextmenu	js/controls/TrackballControls.js	/^	function contextmenu( event ) {$/;"	f
+controller	index.js	/^    controller: {$/;"	p	class:let
+dispose	js/controls/TrackballControls.js	/^	this.dispose = function() {$/;"	c
+handleEvent	js/controls/TrackballControls.js	/^	this.handleEvent = function ( event ) {$/;"	m	class:THREE.TrackballControls
+handleResize	js/controls/TrackballControls.js	/^	this.handleResize = function () {$/;"	m	class:THREE.TrackballControls
+headLength	js/cross_sections/segment.js	/^    headLength: 0.1,$/;"	p	class:arrowProperties
+height	js/controls/TrackballControls.js	/^	this.screen = { left: 0, top: 0, width: 0, height: 0 };$/;"	p	class:THREE.TrackballControls.screen
+keydown	js/controls/TrackballControls.js	/^	function keydown( event ) {$/;"	f	function:THREE.TrackballControls
+keyup	js/controls/TrackballControls.js	/^	function keyup( event ) {$/;"	f	function:THREE.TrackballControls
+left	js/controls/TrackballControls.js	/^	this.screen = { left: 0, top: 0, width: 0, height: 0 };$/;"	p	class:THREE.TrackballControls.screen
+mousedown	js/controls/TrackballControls.js	/^	function mousedown( event ) {$/;"	f	function:THREE.TrackballControls
+mousemove	js/controls/TrackballControls.js	/^	function mousemove( event ) {$/;"	f	function:THREE.TrackballControls
+mouseup	js/controls/TrackballControls.js	/^	function mouseup( event ) {$/;"	f	function:THREE.TrackballControls
+mousewheel	js/controls/TrackballControls.js	/^	function mousewheel( event ) {$/;"	f	function:THREE.TrackballControls
+render	index.js	/^function render() {$/;"	f
+reset	js/controls/TrackballControls.js	/^	this.reset = function () {$/;"	m	class:THREE.TrackballControls
+top	js/controls/TrackballControls.js	/^	this.screen = { left: 0, top: 0, width: 0, height: 0 };$/;"	p	class:THREE.TrackballControls.screen
+touchend	js/controls/TrackballControls.js	/^	function touchend( event ) {$/;"	f
+touchmove	js/controls/TrackballControls.js	/^	function touchmove( event ) {$/;"	f
+touchstart	js/controls/TrackballControls.js	/^	function touchstart( event ) {$/;"	f	function:THREE.TrackballControls
+type	js/controls/TrackballControls.js	/^	var changeEvent = { type: 'change' };$/;"	p	class:THREE.TrackballControls.changeEvent
+type	js/controls/TrackballControls.js	/^	var endEvent = { type: 'end' };$/;"	p	class:THREE.TrackballControls.endEvent
+type	js/controls/TrackballControls.js	/^	var startEvent = { type: 'start' };$/;"	p	class:THREE.TrackballControls.startEvent
+update	js/controls/TrackballControls.js	/^	this.update = function () {$/;"	m	class:THREE.TrackballControls
+width	js/controls/TrackballControls.js	/^	this.screen = { left: 0, top: 0, width: 0, height: 0 };$/;"	p	class:THREE.TrackballControls.screen
+zoomCamera	js/controls/TrackballControls.js	/^	this.zoomCamera = function () {$/;"	m	class:THREE.TrackballControls

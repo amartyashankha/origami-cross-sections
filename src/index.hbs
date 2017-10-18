@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Set the viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <meta charset="UTF-8">
+
+  <title>ES6 + Webpack 2 starter</title>
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#90a8b2">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PSK">
+  <link rel="icon" sizes="192x192" href="images/icons/icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Webpack PWA">
+  <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+
+  <!-- Tile for Win8 -->
+  <meta name="msapplication-TileColor" content="#90a8b2">
+  <meta name="msapplication-TileImage" content="images/icons/icon-192x192.png">
+</head>
+
+<body>
+  <div id="root"></div>
+
+    <script type="text/javascript" src="./js/dat.gui.min.js"></script>
+    <script type="text/javascript" src="./js/controls/TrackballControls.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function(registration) {
+          console.log('Service Worker registration successful with scope: ',
+          registration.scope);
+        })
+        .catch(function(err) {
+          console.log('Service Worker registration failed: ', err);
+        });
+    }
+  </script>
+</body>
+
+</html>
