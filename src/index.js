@@ -1,10 +1,13 @@
 import * as THREE from 'three';
+//import { GenerateTimeSeries } from './js/demos/column_test.js';
 import { GenerateTimeSeries } from './js/demos/column_full.js';
-import { CrossSection2D } from './js/cross_sections/cross_section_2D.js';
+//import { CrossSection2D } from './js/cross_sections/cross_section_2D.js';
 import TrackballControls from './js/controls/TrackballControls.js';
 import * as dat from 'dat.gui/build/dat.gui.js';
 import {controllerParameterUpdate, initializeCanvas} from './js/initialize_canvas.js';
 import './styles/core.scss'
+
+import { SegmentList } from './js/cross_sections/segment_list.js';
 
 let scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera(4, window.innerWidth / window.innerHeight, 0.1, 50000);
@@ -19,8 +22,6 @@ var initialize = () => {
 };
 
 let { TS, T } = initialize();
-
-console.log(initialize);
 
 // Options to be added to the GUI
 let options = {

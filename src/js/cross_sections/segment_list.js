@@ -132,6 +132,10 @@ class SegmentList extends DrawObject {
         });
         this.updateVelocities();
     }
+
+    extend (new_list) {
+        this.segments.push(...new_list.segments);
+    }
 }
 
 export { SegmentList };

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { assert } from 'chai';
 import { Segment } from '../cross_sections/segment.js';
-//import { SegmentList } from '../cross_sections/segment_list.js';
+import { SegmentList } from '../cross_sections/segment_list.js';
 
 class TimeSeries {
     constructor (scene, start, maxTime) {
