@@ -1,5 +1,5 @@
 let initializeCanvas = (scene, camera, renderer, controls, options) => {
-    camera.position.z = 500;
+    camera.position.z = -500;
     camera.position.x = 0;
     camera.position.y = 0;
     camera.lookAt(scene.position);

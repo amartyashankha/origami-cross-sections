@@ -22,6 +22,11 @@ class TimeSeries {
         this.currIndex = 0;
     }
 
+    origin () {
+        let curr = this.snapshots[this.currIndex];
+        return curr.snapshot.segments[0].left.clone();
+    }
+
     addSnapshot (segments, maxTime) {
         maxTime = (maxTime === undefined) ? segments.maxTime() : maxTime;
         let previous = this.snapshots[this.snapshots.length-1];

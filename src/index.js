@@ -1,7 +1,5 @@
 import * as THREE from 'three';
-import { Segment } from './js/cross_sections/segment.js';
-import { SegmentList } from './js/cross_sections/segment_list.js';
-import { TimeSeries } from './js/time_series/time_series.js';
+import { GenerateTimeSeries } from './js/demos/column_full.js';
 import { CrossSection2D } from './js/cross_sections/cross_section_2D.js';
 import TrackballControls from './js/controls/TrackballControls.js';
 import * as dat from 'dat.gui/build/dat.gui.js';
@@ -9,50 +7,20 @@ import {controllerParameterUpdate, initializeCanvas} from './js/initialize_canva
 import './styles/core.scss'
 
 let scene = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(4, window.innerWidth / window.innerHeight, 0.1, 1000);
+let camera = new THREE.PerspectiveCamera(4, window.innerWidth / window.innerHeight, 0.1, 50000);
 let renderer = new THREE.WebGLRenderer({ antialias: true });
 document.body.appendChild( renderer.domElement );
 let controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-var direction = new THREE.Vector3(0, 1, 0);
-var left = new THREE.Vector3(0, 0, 0);
-var right = new THREE.Vector3(100, 0, 0);
-var s1 = new Segment(scene, left, right, direction);
+var initialize = () => {
+    let ret = GenerateTimeSeries(scene, [1, 3, 1, 2, 0]);
+    ret.TS.timeTravel(ret.T);
+    return ret;
+};
 
-//var direction = new THREE.Vector3(1, 0, 0);
-//var left = new THREE.Vector3(50, 0, 0);
-//var right = new THREE.Vector3(50, 50, 0);
-//var s2 = new Segment(scene, left, right, direction);
+let { TS, T } = initialize();
 
-var segments = new SegmentList(scene, [s1]);
-
-let TS = new TimeSeries(scene, segments, 70);
-
-segments.timeTravel(70);
-var orientation = new THREE.Vector3(0,1,0);
-var direction = new THREE.Vector3(-1,0,0);
-segments.makeSegment(0, orientation, direction);
-
-TS.addSnapshot(segments, 40);
-segments.timeTravel(40, true);
-
-var orientation = new THREE.Vector3(-1,0,0);
-var direction = new THREE.Vector3(0,1,0);
-segments.makeSegment(0, orientation, direction);
-
-TS.addSnapshot(segments, 40);
-segments.timeTravel(40, true, true);
-
-TS.addSnapshot(segments, 50);
-//segments.timeTravel(20, true);
-
-//segments.setDirection(new THREE.Vector3(0,0,1));
-//segments.timeTravel(20, true);
-
-//segments.refresh();
-
-var T = 40
-TS.timeTravel(T);
+console.log(initialize);
 
 // Options to be added to the GUI
 let options = {
@@ -62,16 +30,13 @@ let options = {
         panSpeed: 0.1,
     },
     reset: function() {
-        this.velx = 0.1;
-        this.vely = 0.1;
-        camera.position.z = 75;
+        camera.position.z = 500;
         camera.position.x = 0;
         camera.position.y = 0;
-        cube.scale.x = 1;
-        cube.scale.y = 1;
-        cube.scale.z = 1;
-        cube.material.wireframe = true;
+        let { TS, T } = initialize();
+        this.time = T;
     },
+    TS: TS,
     time: T,
 };
 
@@ -92,10 +57,10 @@ let controller = gui.addFolder('Trackball Controls');
     });
 
 gui.add(options, 'reset');
-let timeController = gui.add(options, 'time', 0, 200).step(1);
+let timeController = gui.add(options, 'time', 0, options.time).step(1);
 
 timeController.onChange(function(time) {
-    TS.timeTravel(time);
+    options.TS.timeTravel(time);
 });
 
 

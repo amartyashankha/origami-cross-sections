@@ -6,7 +6,7 @@ import { DrawObject } from './draw_object.js';
 class SegmentList extends DrawObject {
     constructor (scene, segments) {
         super();
-        if (__DEV__)
+        if (false && __DEV__)
             for (var i = 0, len = segments.length; i < len-1; i++) {
                 let first = segments[i];
                 let second = segments[i+1];
@@ -18,6 +18,7 @@ class SegmentList extends DrawObject {
         this.scene = scene;
         this.segments = segments;
         this.updateVelocities();
+        this.updateArrowColors();
     }
 
     timeTravel (T, polygon=false, filter=false) {
@@ -28,9 +29,10 @@ class SegmentList extends DrawObject {
         assert(T >= this.minTime(), 'You\'re going to (min)time prison');
         let polygons = [];
         for (var i in this.segments) {
-            let poly = this.segments[i].timeTravel(T, polygon);
+            let new_faces = this.segments[i].timeTravel(T, polygon);
             if (polygon) {
-                polygons.push(poly);
+                polygons.push(new_faces.mesh);
+                polygons.push(new_faces.line);
             }
         }
         if (filter) {
@@ -45,6 +47,12 @@ class SegmentList extends DrawObject {
                 group.add(poly);
             });
             return group;
+        }
+    }
+
+    updateArrowColors () {
+        for (var i in this.segments) {
+            this.segments[i].arrow_counter = i;
         }
     }
 
@@ -108,6 +116,7 @@ class SegmentList extends DrawObject {
             this.reverseSegments(0, index+1);
         }
         this.updateVelocities();
+        this.updateArrowColors();
     }
 
     reverseSegments(beg, end) {
